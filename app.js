@@ -5,7 +5,7 @@ const app=express();  //invokes an express app..
 
 const blogRoutes=require('./routes/blogRoutes');
 //connect to mongoDB..
-const dbURI='mongodb+srv://mohith:KrIs786@test.epmtaho.mongodb.net/?retryWrites=true&w=majority';
+const dbURI='mongodb+srv://username:password@test.epmtaho.mongodb.net/?retryWrites=true&w=majority';
 mongoose.connect(dbURI)
 .then(res=>{
     app.listen(3000);
