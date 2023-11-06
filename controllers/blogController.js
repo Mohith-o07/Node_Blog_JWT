@@ -41,10 +41,12 @@ const updateblog=(req,res)=>{
     Blog.findByIdAndUpdate({_id:req.params.id},req.body)
     .then(result=>res.redirect('/blogs'))
     .catch(err=>res.send({error:err.message})
+};
 module.exports={
     allblogs,
     blog_details,
     create_blog,
     create_blog_post,
+    updateblog,
     deleteblog
 }
