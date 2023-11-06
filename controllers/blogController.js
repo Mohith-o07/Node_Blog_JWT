@@ -24,6 +24,7 @@ const blog_details=(req,res)=>{
 const create_blog_post=(req,res)=>{
     const blog=new Blog(req.body);
     blog.save()
+   //Blog.create(req.body)
     .then(result=>res.redirect('/blogs'))
     .catch(err=>console.log(err))
 };
