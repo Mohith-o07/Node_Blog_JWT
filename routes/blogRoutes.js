@@ -7,6 +7,7 @@ router.get('/', blogController.allblogs);
 router.get('/create',blogController.create_blog);
 router.get('/:id',blogController.blog_details);
 router.post('/',blogController.create_blog_post);
+router.put('/:id',blogController.updateblog);
 router.delete('/:id',blogController.deleteblog);
 
 module.exports=router;
