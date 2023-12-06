@@ -22,11 +22,14 @@ This is a simple blog application built using Node.js and Express, with MongoDB 
   - `styles.css`: Provides styling for the application interface.
 
 - **views:** Consists of EJS templates for rendering different pages.
-  - `404.ejs`, `about.ejs`: Error and about page templates.
-  - `blogs/create.ejs`, `blogs/details.ejs`, `blogs/index.ejs`: Templates for creating, viewing, and displaying blog details.
+  - **`blogs`:** Templates for handling blog-related views.
+    - `create.ejs`: Form for creating a new blog.
+    - `details.ejs`: Template for displaying blog details.
+    - `index.ejs`: Template for listing all blogs.
 
-- **views/partials:** Includes partial templates for components used across different views.
-  - `footer.ejs`, `head.ejs`, `nav.ejs`: Header, footer, and navigation partials.
+  - `404.ejs`, `about.ejs`: Error and about page templates.
+  - **partials:**
+    - `footer.ejs`, `head.ejs`, `nav.ejs`: Header, footer, and navigation partials.
 
 - **app.js:** Main server file that sets up the Express application, connects to MongoDB, and defines middleware and routes.
 
@@ -49,7 +52,7 @@ This is a simple blog application built using Node.js and Express, with MongoDB 
 - Express: Web application framework.
 - Mongoose: MongoDB object modeling for Node.js.
 - Morgan: HTTP request logger middleware.
-- EJS: Embedded JavaScript templates for rendering views.
+- EJS: Embedded JavaScript templates for rendering views. EJS allows embedding JavaScript code within HTML markup, making it easier to generate dynamic content.
 
 ## License
 
