@@ -22,7 +22,7 @@ This is a simple blog application built using Node.js and Express, with MongoDB 
   - `styles.css`: Provides styling for the application interface.
 
 - **views:** Consists of EJS templates for rendering different pages.
-  - **`blogs`:** Templates for handling blog-related views.
+  - **blogs:** Templates for handling blog-related views.
     - `create.ejs`: Form for creating a new blog.
     - `details.ejs`: Template for displaying blog details.
     - `index.ejs`: Template for listing all blogs.
