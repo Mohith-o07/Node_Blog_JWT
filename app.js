@@ -6,7 +6,7 @@ const app=express();  //invokes an express app..
 
 const blogRoutes=require('./routes/blogRoutes');
 //connect to mongoDB..
-const dbURI='mongodb+srv://mohith:KrIs786@cluster0.epmtaho.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const dbURI='mongodb+srv://<username>:<password>@cluster0.epmtaho.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(dbURI)
 .then(res=>{
     app.listen(3000);
@@ -22,8 +22,6 @@ app.use(express.static('styles'));
 app.use(express.urlencoded({extended:true}));
 //app.use(bodyParser.json());
 app.use(morgan('tiny'));
-// After initializing your Express app
-app.use(methodOverride('_method'));
 
 app.get('/',(req,res)=>{
     
