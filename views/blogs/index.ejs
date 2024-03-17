@@ -7,9 +7,9 @@
     <div class="blogs content">
         <h2>All Blogs</h2>
 
-        <% if(blogs.length>0) { %>
+        <% if(blogs.length>0) { %>  <!--doesn't print any output to the template -->
             <% blogs.forEach(blog=>{ %>
-                <a class="single" href="/blogs/<%= blog._id %>">
+                <a class="single" href="/v1/blogs/<%= blog._id %>">  <!--outputs the result of js code into template-->
                 <h3 class="'title"><%= blog.title %></h3>
                 <p class="'snippet"><%= blog.snippet %></p>
                 </a>

@@ -24,7 +24,7 @@ const blog_details=(req,res)=>{
 const create_blog_post=(req,res)=>{
     const blog=new Blog(req.body);
     blog.save()
-    .then(result=>res.redirect('/blogs'))
+    .then(result=>res.redirect('/v1/blogs'))
     .catch(err=>console.log(err))
 };
 
@@ -32,7 +32,7 @@ const create_blog_post=(req,res)=>{
     const id=req.params.id;
     Blog.findByIdAndDelete(id)
     .then(result=>{
-        res.json({redirect:'/blogs'});
+        res.json({redirect:'/v1/blogs'});
     })
     .catch(err=>console.log(err))
 };

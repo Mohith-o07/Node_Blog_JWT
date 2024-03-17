@@ -5,7 +5,7 @@ const app=express();  //invokes an express app..
 
 const blogRoutes=require('./routes/blogRoutes');
 //connect to mongoDB..
-const dbURI='mongodb+srv://mohith:KrIs786@test.epmtaho.mongodb.net/?retryWrites=true&w=majority';
+const dbURI='mongodb+srv://mohith:KrIs786@cluster0.epmtaho.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(dbURI)
 .then(res=>{
     app.listen(3000);
@@ -24,16 +24,16 @@ app.use(morgan('tiny'));
 app.get('/',(req,res)=>{
     
     //res.sendFile('./views/index.html',{root:__dirname});
-    res.redirect('/blogs');
+    res.redirect('/v1/blogs');
 });
 
-app.get('/about',(req,res)=>{
+app.get('/v1/blogs/about',(req,res)=>{
     //res.sendFile('./views/about.html',{root:__dirname});
     res.render('about',{title:"about"});
 });
 
 //blog routes..
-app.use('/blogs',blogRoutes);
+app.use('/v1/blogs',blogRoutes);
 
 app.use((req,res)=>{
     //res.status(404).sendFile('./views/404.html',{root:__dirname});
