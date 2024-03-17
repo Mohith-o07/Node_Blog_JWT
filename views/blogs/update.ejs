@@ -7,7 +7,7 @@
     <%- include('../partials/nav.ejs') %>
 
     <div class="create-blog">
-        <form action="/v1/blogs/<%= blog._id %>" method="POST">
+        <form action="/v1/blogs/updateblog/<%= blog._id %>" method="POST">
             <!-- Add a hidden input field to specify the method as PUT -->
             <!-- <input type="hidden" name="_method" value="PUT"> -->
             <label for="title">Blog Title:</label>
