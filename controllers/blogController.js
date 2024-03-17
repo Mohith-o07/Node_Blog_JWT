@@ -39,10 +39,11 @@ const create_blog_post=(req,res)=>{
 };
 
 const update_blog = (req, res) => {
+    //console.log(req.body,typeof req.body);
     const id = req.params.id;
     Blog.findByIdAndUpdate(id, req.body, { new: true })
         .then(result => {
-            res.redirect('/v1/blogs');
+            res.json({redirect:'/v1/blogs'});
         })
         .catch(err => console.log(err));
 };

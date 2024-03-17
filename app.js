@@ -17,8 +17,10 @@ mongoose.connect(dbURI)
 app.set('view engine','ejs');
 
 //middleware & static files..
+app.use(express.json());
 app.use(express.static('styles'));
 app.use(express.urlencoded({extended:true}));
+//app.use(bodyParser.json());
 app.use(morgan('tiny'));
 // After initializing your Express app
 app.use(methodOverride('_method'));
