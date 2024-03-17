@@ -2,7 +2,7 @@
 const Blog=require('../models/blog');
 
 const allblogs=(req,res)=>{
-    Blog.find().sort({createdAt:-1})
+    Blog.find().sort({updatedAt: -1,createdAt:-1})
     .then(result=>{
         res.render('blogs/index',{title:'All Blogs',blogs:result})
     })
@@ -17,6 +17,16 @@ const blog_details=(req,res)=>{
     })
     .catch(err=>res.render('404',{title:'error'}))
 };
+
+const get_update_form = (req, res) => {
+    const id = req.params.id;
+    Blog.findById(id)
+        .then(result => {
+            res.render('blogs/update', { blog: result, title: 'Update Blog' });
+        })
+        .catch(err => res.render('404', { title: 'error' }));
+};
+
  const create_blog=(req,res)=>{
     res.render('blogs/create',{title:"create"});
 };
@@ -26,6 +36,15 @@ const create_blog_post=(req,res)=>{
     blog.save()
     .then(result=>res.redirect('/v1/blogs'))
     .catch(err=>console.log(err))
+};
+
+const update_blog = (req, res) => {
+    const id = req.params.id;
+    Blog.findByIdAndUpdate(id, req.body, { new: true })
+        .then(result => {
+            res.redirect('/v1/blogs');
+        })
+        .catch(err => console.log(err));
 };
 
  const deleteblog=(req,res)=>{
@@ -40,6 +59,8 @@ module.exports={
     allblogs,
     blog_details,
     create_blog,
+    get_update_form,
     create_blog_post,
+    update_blog,
     deleteblog
 }

@@ -1,6 +1,7 @@
 const express=require('express');  //returns a func..
 const morgan=require('morgan');
 const mongoose=require('mongoose');
+const methodOverride = require('method-override');
 const app=express();  //invokes an express app..
 
 const blogRoutes=require('./routes/blogRoutes');
@@ -19,7 +20,8 @@ app.set('view engine','ejs');
 app.use(express.static('styles'));
 app.use(express.urlencoded({extended:true}));
 app.use(morgan('tiny'));
-
+// After initializing your Express app
+app.use(methodOverride('_method'));
 
 app.get('/',(req,res)=>{
     

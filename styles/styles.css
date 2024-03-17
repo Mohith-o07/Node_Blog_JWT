@@ -106,3 +106,15 @@ border: 0;
 font-size: 1.1em;
 cursor: pointer;
 }
+.update button{
+    margin-top:20px;
+    background: white;
+    color: black;
+    padding: 6px;
+    border: 0;
+    font-size: 1.1em;
+    cursor: pointer;
+    font-family: 'Noto Serif',serif;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
+}
+    
