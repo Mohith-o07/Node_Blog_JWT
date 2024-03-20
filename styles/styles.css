@@ -111,7 +111,7 @@ cursor: pointer;
     background: white;
     color: black;
     padding: 6px;
-    border: 0;
+    border: 1px outset #444;
     font-size: 1.1em;
     cursor: pointer;
     font-family: 'Noto Serif',serif;
