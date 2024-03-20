@@ -15,7 +15,7 @@ const blog_details=(req,res)=>{
     .then(result=>{
         res.render('blogs/details',{blog:result,title:'Blog Details'})
     })
-    .catch(err=>res.render('404',{title:'error'}))
+    .catch(err=>res.render('404'));
 };
 
 const get_update_form = (req, res) => {
@@ -24,7 +24,7 @@ const get_update_form = (req, res) => {
         .then(result => {
             res.render('blogs/update', { blog: result, title: 'Update Blog' });
         })
-        .catch(err => res.render('404', { title: 'error' }));
+        .catch(err => res.render('404'));
 };
 
  const create_blog=(req,res)=>{

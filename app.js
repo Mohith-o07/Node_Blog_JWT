@@ -1,10 +1,9 @@
 const express=require('express');  //returns a func..
 const morgan=require('morgan');
 const mongoose=require('mongoose');
-const methodOverride = require('method-override');
 const app=express();  //invokes an express app..
-
 const blogRoutes=require('./routes/blogRoutes');
+const {rateLimitMiddleware}=require('./middleware/ratelimiting')
 //connect to mongoDB..
 const dbURI='mongodb+srv://mohith:KrIs786@cluster0.epmtaho.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(dbURI)
@@ -15,7 +14,6 @@ mongoose.connect(dbURI)
 .catch(err=>console.log(err))
 //register view engine..
 app.set('view engine','ejs');
-
 //middleware & static files..
 app.use(express.json());
 app.use(express.static('styles'));
@@ -23,8 +21,7 @@ app.use(express.urlencoded({extended:true}));
 //app.use(bodyParser.json());
 app.use(morgan('tiny'));
 // After initializing your Express app
-app.use(methodOverride('_method'));
-
+app.get('*',rateLimitMiddleware);  //implements rate limiting for every route..
 app.get('/',(req,res)=>{
     
     //res.sendFile('./views/index.html',{root:__dirname});
