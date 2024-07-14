@@ -1,0 +1,15 @@
+<nav>
+    <div class="site-title">
+        <a href="/"><h1>Node blog</h1></a>
+        <p>A site with node.js</p>
+    </div>
+    <ul>
+        <% if(user){ %>
+        <li><%= user.email %></li>
+        <% } %>
+        <li><a href="/v1/blogs">Blogs</a></li>
+        <li><a href="/v1/blogs/about">About</a></li>
+        <li><a href="/v1/blogs/createblogForm">New Blog</a></li>
+        <li><a href="/v1/auth/blogs/logout">logout</a></li>
+    </ul>
+</nav>

@@ -1,0 +1,18 @@
+GET /v1/blogs/  - gets all blogs from the database.
+GET /v1/blogs/:id - gets a specific blog.
+GET /v1/blogs/createblogForm - gets a form to enter a new blog.
+GET /v1/blogs/updateblogForm - gets a page to update and submit the blog.
+POST /v1/blogs/createblog - creates a new blog.
+PUT /v1/blogs/updateblog - updates the blog.
+DELETE /v1/blogs/deleteblog/:id - deletes a blog.
+
+
+
+
+router.get('/', blogController.allblogs);
+router.get('/createblogForm',blogController.create_blog);
+router.get('/:id',blogController.blog_details); //check index.ejs
+router.get('/updateblog/:id', blogController.get_update_form);
+router.post('/createblog',blogController.create_blog_post);
+router.post('/updateblog/:id', blogController.update_blog);
+router.delete('/deleteblog/:id',blogController.deleteblog);
