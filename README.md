@@ -62,7 +62,7 @@ This is a simple blog application built using Node.js and Express, with MongoDB 
 - [Mongoose](https://mongoosejs.com/): MongoDB object modeling for Node.js.
 - [Morgan](https://www.npmjs.com/package/morgan): HTTP request logger middleware.
 - [EJS](https://ejs.co/): Embedded JavaScript templates for rendering views. EJS allows embedding JavaScript code within HTML markup, making it easier to generate dynamic content.
-- [cookie-parser]: Library used to parse cookies.
+- [cookie-parser](https://www.npmjs.com/package/cookie-parser): Library used to parse HTTP request cookies.
 
 ## License
 
