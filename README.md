@@ -9,6 +9,7 @@ This is a simple blog application built using Node.js and Express, with MongoDB 
 
 ## Features
 
+- Signup/login using username and password.
 - Create blog
 - Update blog
 - Delete blog
