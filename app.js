@@ -8,7 +8,7 @@ const authRoutes=require('./routes/authRoutes');
 const {rateLimitMiddleware}=require('./middleware/ratelimiting');
 const {requireAuth,checkUser}=require('./middleware/authMiddleware');
 //connect to mongoDB..
-const dbURI='mongodb+srv://mohith:KrIs786@cluster0.epmtaho.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const dbURI='mongodb+srv://username:password@cluster0.epmtaho.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(dbURI)
 .then(res=>{
     app.listen(3001);
