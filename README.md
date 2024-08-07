@@ -1,14 +1,15 @@
 
 ---
 
-# Blog App
+# Blog App with JWT Authentication
 
 ## Overview
 
-This is a simple blog application built using Node.js and Express, with MongoDB as the database. It follows the MVC (Model-View-Controller) architecture and includes basic CRUD (Create, Read, Update, Delete) operations for managing blog posts.
+This is a simple blog application built using Node.js and Express, with MongoDB as the database. It follows the MVC (Model-View-Controller) architecture and includes basic CRUD (Create, Read, Update, Delete) operations for managing blog posts. It uses JSON Web Tokens for Authentication. You can also run this project as a Docker container(check "Dockerfile").
 
 ## Features
 
+- Signup/login using username and password.
 - Create blog
 - Update blog
 - Delete blog
@@ -53,15 +54,15 @@ This is a simple blog application built using Node.js and Express, with MongoDB 
 
 ## Usage
 
-- Access the application at `http://localhost:3000`
-- Navigate to `/blogs` to view all blogs, create a new blog, and perform CRUD operations.
-
+- Access the application at `http://localhost:3001`
+- login/signup using username and password, then you are good to go!
 ## Dependencies
 
 - [Express](https://expressjs.com/): Web application framework.
 - [Mongoose](https://mongoosejs.com/): MongoDB object modeling for Node.js.
 - [Morgan](https://www.npmjs.com/package/morgan): HTTP request logger middleware.
 - [EJS](https://ejs.co/): Embedded JavaScript templates for rendering views. EJS allows embedding JavaScript code within HTML markup, making it easier to generate dynamic content.
+- [cookie-parser](https://www.npmjs.com/package/cookie-parser): Library used to parse HTTP request cookies.
 
 ## License
 
