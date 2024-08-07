@@ -2,16 +2,18 @@ const express=require('express');  //returns a func..
 const morgan=require('morgan');
 const cookieParser=require('cookie-parser');//middleware
 const mongoose=require('mongoose');
+require('dotenv').config();
 const app=express();  //invokes an express app..
 const blogRoutes=require('./routes/blogRoutes');
 const authRoutes=require('./routes/authRoutes');
 const {rateLimitMiddleware}=require('./middleware/ratelimiting');
 const {requireAuth,checkUser}=require('./middleware/authMiddleware');
 //connect to mongoDB..
-const dbURI='mongodb+srv://mohith:KrIs786@cluster0.epmtaho.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const dbURI=process.env.dbURI;
+const port=process.env.PORT || 3000;
 mongoose.connect(dbURI)
 .then(res=>{
-    app.listen(3001);
+    app.listen(port);
     console.log('connected to dbb!');
 })
 .catch(err=>console.log(err))
