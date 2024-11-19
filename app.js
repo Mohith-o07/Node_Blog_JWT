@@ -28,16 +28,16 @@ app.use(morgan('tiny'));
 app.use(cookieParser());
 // After initializing your Express app
 app.get('*',rateLimitMiddleware);  //implements rate limiting for every route..
-app.get('*',checkUser); //applies to every get request..
-app.get('/v1/blogs/',requireAuth);
-app.get('/',requireAuth,(req,res)=>{
-    console.log(123);
+app.get('*',checkUser,requireAuth); //applies to every get request..
+app.post('*',requireAuth);
+app.put('*',requireAuth);
+app.delete('*',requireAuth);
+app.get('/',(req,res)=>{
     res.redirect('/v1/blogs/');
 });
 
 app.use('/v1/blogs',blogRoutes);
 app.use('/v1/auth/blogs',authRoutes);
 app.use((req,res)=>{
-    //res.status(404).sendFile('./views/404.html',{root:__dirname});
     res.status(404).render('blogs/404',{title:"error"});
 })

@@ -2,6 +2,10 @@ const jwt=require('jsonwebtoken');
 const User = require('../models/User');
 
 const requireAuth=(req,res,next)=>{
+    const excludedPaths = ['/v1/auth/blogs/login','/v1/auth/blogs/signup','/v1/auth/blogs/logout'];
+    if (excludedPaths.includes(req.path)) {
+      return next(); // Skip checkUser for these paths
+    }
     const token=req.cookies.jwt;
     console.log(token);
     if(token){
@@ -10,13 +14,12 @@ const requireAuth=(req,res,next)=>{
                 console.log(err.message);
                 res.redirect('/v1/auth/blogs/login');
             }else{
-                console.log(decodedToken);
                 next();
             }
         })
     }
     else{
-        res.redirect('/v1/auth/blogs/login');
+        return res.redirect('/v1/auth/blogs/login');
     }
 }
 
@@ -30,7 +33,6 @@ const checkUser=(req,res,next)=>{  //to render email to header partial..
                 res.locals.user=null;
                 next();
             }else{
-                console.log("authMiddleware",decodedToken);
                 let user=await User.findById(decodedToken.id);
                 res.locals.user=user;  //views local data..
                 next();
