@@ -1,17 +1,51 @@
 //all blogs, blog_details,blog_create_get,blog_create_post,blog_delete..
 const Blog=require('../models/blog');
+const User = require("../models/User");
+const jwt=require('jsonwebtoken');
+const bcrypt=require('bcrypt');
+
+const getUser = async (req) => {
+    const token = req.cookies.jwt;
+    try {
+        const decodedToken = await jwt.verify(token, 'mohitheswar paida');
+        const user = await User.findById(decodedToken.id);
+        return user;
+    } catch (err) {
+        console.error("Error verifying token:", err.message);
+        return null;
+    }
+};
 
 const get_about=(req,res)=>{
     res.render('blogs/about',{title:"about"});
 }
 
-const allblogs=(req,res)=>{
-    Blog.find().sort({updatedAt: -1,createdAt:-1})
-    .then(result=>{
-        res.render('blogs/index',{title:'All Blogs',blogs:result})
-    })
-    .catch(err=>console.log(err))
-}
+const allblogs = async (req, res) => {
+    try {
+        // Await the user properly
+        const user = await getUser(req);  // Assuming getUser() fetches the current user
+
+        const result = await Blog.find().sort({ updatedAt: -1, createdAt: -1 });
+        if (!result || result.length === 0) {
+            return res.render('blogs/index', { title: 'All Blogs', blogs: [] });
+        }
+        const filteredBlogs = [];
+        // Filter blogs by comparing the hashed value of bloguser
+        for (let b of result) {
+            const isMatch = await bcrypt.compare(user.email, b.bloguser); // Await bcrypt.compare
+            if (isMatch) {
+                const blogObject = b.toObject();
+                delete blogObject.bloguser; // Exclude the bloguser field
+                filteredBlogs.push(blogObject);
+            }
+        }
+        res.render('blogs/index', { title: 'All Blogs', blogs: filteredBlogs });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server error');
+    }
+};
+
 
 const blog_details=(req,res)=>{
     const id=req.params.id;
@@ -35,12 +69,25 @@ const get_update_form = (req, res) => {
     res.render('blogs/create',{title:"create"});
 };
 
-const create_blog_post=(req,res)=>{
-    const blog=new Blog(req.body);
-    blog.save()
-    .then(result=>res.redirect('/v1/blogs'))
-    .catch(err=>console.log(err))
+const create_blog_post = async (req, res) => {
+    try {
+        // Wait for the user to be fetched properly
+        const user = await getUser(req);
+        console.log(user);
+        // Create a new blog post using the user email and request body
+        const blog = new Blog({
+            bloguser: user.email,  // Ensure that user is correctly populated before using it
+            ...req.body
+        });
+        // Save the blog and redirect to the blogs page
+        await blog.save();
+        res.redirect('/v1/blogs');
+    } catch (err) {
+        console.error(err);  // Log errors
+        res.status(500).send('Error creating blog post');
+    }
 };
+
 
 const update_blog = (req, res) => {
     //console.log(req.body,typeof req.body);
