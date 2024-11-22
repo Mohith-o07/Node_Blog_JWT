@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const jwt=require('jsonwebtoken');
+require('dotenv').config();
 
 //handle errors..
 const handleErrors=(err)=>{
@@ -33,7 +34,7 @@ const handleErrors=(err)=>{
 }
 const maxAge=5*60;
 const createToken=(id)=>{
-    return jwt.sign({id},'mohitheswar paida',{
+    return jwt.sign({id},process.env.SECRET_KEY,{
         expiresIn:maxAge  //in seconds..
     });
 }
