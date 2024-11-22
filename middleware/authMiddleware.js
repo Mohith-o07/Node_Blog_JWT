@@ -1,10 +1,11 @@
 const jwt=require('jsonwebtoken');
 const User = require('../models/User');
+require('dotenv').config();
 
 const requireAuth=(req,res,next)=>{
     const token=req.cookies.jwt;
     if(token){
-        jwt.verify(token,'mohitheswar paida',(err,decodedToken)=>{
+        jwt.verify(token,process.env.SECRET_KEY,(err,decodedToken)=>{
             if(err){
                 console.log(err.message);
                 res.redirect('/v1/auth/blogs/login');
@@ -23,7 +24,7 @@ const requireAuth=(req,res,next)=>{
 const checkUser=(req,res,next)=>{  //to render email to header partial..
     const token=req.cookies.jwt;
     if(token){
-        jwt.verify(token,'mohitheswar paida',async(err,decodedToken)=>{
+        jwt.verify(token,process.env.SECRET_KEY,async(err,decodedToken)=>{
             if(err){
                 console.log(err.message);
                 res.locals.user=null;

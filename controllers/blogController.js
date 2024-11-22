@@ -3,11 +3,12 @@ const Blog=require('../models/blog');
 const User = require("../models/User");
 const jwt=require('jsonwebtoken');
 const bcrypt=require('bcrypt');
+require('dotenv').config();
 
 const getUser = async (req) => {
     const token = req.cookies.jwt;
     try {
-        const decodedToken = await jwt.verify(token, 'mohitheswar paida');
+        const decodedToken = await jwt.verify(token, process.env.SECRET_KEY);
         const user = await User.findById(decodedToken.id);
         return user;
     } catch (err) {
