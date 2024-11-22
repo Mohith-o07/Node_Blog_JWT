@@ -53,8 +53,8 @@ This is a simple blog application built using Node.js and Express, with MongoDB 
 4. Run the application: `npm start`
 
 ## Usage
-
-- Access the application at `http://localhost:3001`
+- To spinup the server, create an .env file and add your mongodbURI to connect to the database and a secret_key for signing the token.
+- Run the app, and access the application at `http://localhost:3001`
 - login/signup using username and password, then you are good to go!
 ## Dependencies
 
